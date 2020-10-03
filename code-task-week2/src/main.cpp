@@ -8,15 +8,17 @@
 
 int adcValue = 0;
 float voltage = 0;
-int temperature = 0;
+int ledList[4] = {LED1, LED2, LED3, LED4};
+
+void ledOn(int ledNumber);
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(LED1, OUTPUT);
-  pinMode(LED2, OUTPUT);
-  pinMode(LED3, OUTPUT);
-  pinMode(LED4, OUTPUT);
+  for (int i = 1; i < 5; i++)
+  {
+    pinMode(ledList[i], OUTPUT);
+  }
 }
 
 void loop()
@@ -27,34 +29,41 @@ void loop()
   voltage = ((float)adcValue / 4095) * 3.3;
   printData = "Nilai tegangan yang terbaca: " + String(voltage) + " V";
   Serial.println(printData);
-  temperature = ((float)adcValue / 4095) * 100;
+  float temperature = ((float)adcValue / 4095) * 100;
   printData = "Nilai termperatur yang terbaca: " + String(temperature) + " C";
   Serial.println(printData);
   delay(1000);
 
   if (temperature <= 15)
   {
-      digitalWrite(LED1, HIGH);
-      digitalWrite(LED2, LOW);
-      digitalWrite(LED3, LOW);
-      digitalWrite(LED4, LOW);
-  } else if (temperature >= 16 and temperature <= 25)
+    ledOn(1);
+  }
+  else if (temperature >= 16 and temperature <= 25)
   {
-      digitalWrite(LED1, LOW);
-      digitalWrite(LED2, HIGH);
-      digitalWrite(LED3, LOW);
-      digitalWrite(LED4, LOW);
-  } else if (temperature >=25 and temperature <=30)
+    ledOn(2);
+  }
+  else if (temperature >= 25 and temperature <= 30)
   {
-      digitalWrite(LED1, LOW);
-      digitalWrite(LED2, LOW);
-      digitalWrite(LED3, HIGH);
-      digitalWrite(LED4, LOW);
-  } else
+    ledOn(3);
+  }
+  else
   {
-      digitalWrite(LED1, LOW);
-      digitalWrite(LED2, LOW);
-      digitalWrite(LED3, LOW);
-      digitalWrite(LED4, HIGH);
+    ledOn(4);
+  }
+  delay(500);
+}
+
+void ledOn(int ledNumber)
+{
+  for (int i = 1; i < 5; i++)
+  {
+    if (i == ledNumber)
+    {
+      digitalWrite(ledList[i], HIGH);
+    }
+    else
+    {
+      digitalWrite(ledList[i], LOW);
+    }
   }
 }
