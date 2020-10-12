@@ -6,6 +6,10 @@
 		{
 			"name": "code-task-week2",
 			"path": "code-task-week2"
+		},
+		{
+			"name": "code-task-week3",
+			"path": "code-task-week3"
 		}
 	],
 	"settings": {}
