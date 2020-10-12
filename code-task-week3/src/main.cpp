@@ -11,7 +11,7 @@
 #define MOSI_PIN 23
 #define GET_CHIP_ID 0x9F
 #define LEN_ID 4
-#define BUTTON_PIN 5
+#define BUTTON_PIN 15
 
 byte chipId[4];
 unsigned char writePage[256] = "";
