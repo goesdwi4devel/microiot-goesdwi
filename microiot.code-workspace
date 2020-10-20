@@ -10,6 +10,30 @@
 		{
 			"name": "code-task-week3",
 			"path": "code-task-week3"
+		},
+		{
+			"name": "code-task4",
+			"path": "code-task4"
+		},
+		{
+			"name": "esp32_eeprom",
+			"path": "esp32_eeprom"
+		},
+		{
+			"name": "esp32_timer_interrupt",
+			"path": "esp32_timer_interrupt"
+		},
+		{
+			"name": "esp32_eeprom_arraychar",
+			"path": "esp32_eeprom_arraychar"
+		},
+		{
+			"name": "esp32_module_w25q64",
+			"path": "esp32_module_w25q64"
+		},
+		{
+			"name": "esp32_gpio_interrupt",
+			"path": "esp32_gpio_interrupt"
 		}
 	],
 	"settings": {}

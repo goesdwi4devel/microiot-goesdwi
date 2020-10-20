@@ -52,7 +52,7 @@ void setup()
   spiChip.begin();
   spiChip.getId(chipId);
 
-  pinMode(BUTTON_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
 
   // baca chip id
   Serial.print("CHIP ID is: ");
@@ -65,13 +65,17 @@ void setup()
   //membaca data dari chip w25q64
   Serial.println("Reading Auto Brightness status...");
   autoBrightness = readMem();
-  Serial.print("Auto Brightness is ");
-  Serial.println(autoBrightness);
+  if (autoBrightness == "1")
+  {
+    Serial.println("Auto Brightness is On ");
+  } else
+  {
+    Serial.println("Auto Brightness is Off");
+  }
 }
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
   bh1750Request(BH1750_ADDRESS);
   delay(200);
 
@@ -84,7 +88,7 @@ void loop()
   }
 
   // autobrightness active nyalakan led sesuai lux
-  if (autoBrightness == "on")
+  if (autoBrightness == "1")
   {
     if (lux <= 250)
     {
@@ -115,18 +119,17 @@ void loop()
 
   if (digitalRead(BUTTON_PIN) == LOW)
   {
-    delay(200);
-    if (autoBrightness == "on")
+    if (autoBrightness == "1")
     {
-      autoBrightness = "off";
+      autoBrightness = "0";
       Serial.println("Turning off auto brightness");
-      writeMem("off");
+      writeMem(autoBrightness);
     }
     else
     {
-      autoBrightness = "on";
+      autoBrightness = "1";
       Serial.println("Turning on auto brightness");
-      writeMem("on");
+      writeMem(autoBrightness);
     }
   }
 }
@@ -173,17 +176,13 @@ void ledOff()
 void writeMem(String str2Write)
 {
   //Menulis data ke chip w25q64
-  // Serial.println(str2Write);
-
-  if (str2Write == "on")
+  if (str2Write == "1")
   {
-    // Serial.println("tulis on ke memory");
-    memcpy(writePage, "on", sizeof("on"));
+    memcpy(writePage, "1", sizeof("1"));
   }
   else
   {
-    // Serial.println("tulis off ke memory");
-    memcpy(writePage, "off", sizeof("off"));
+    memcpy(writePage, "0", sizeof("0"));
   }
   spiChip.erasePageSector(0xFFFF);
   spiChip.pageWrite(writePage, 0xFFFF);
@@ -193,16 +192,16 @@ void writeMem(String str2Write)
 String readMem()
 {
   //membaca data dari chip w25q64
-  String autoBrightness1 = "";
+  String autoBrightness = "";
 
   spiChip.readPages(readPage, 0xFFFF, 1);
   for (int i = 0; i < 256; i++)
   {
     if (readPage[i] > 8 && readPage[i] < 127)
     {
-      autoBrightness1 += (char)readPage[i];
+      autoBrightness += (char)readPage[i];
     }
   }
   delay(200);
-  return autoBrightness1;
+  return autoBrightness;
 }
