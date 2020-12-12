@@ -34,6 +34,22 @@
 		{
 			"name": "esp32_gpio_interrupt",
 			"path": "esp32_gpio_interrupt"
+		},
+		{
+			"name": "esp32_bluetooth_classic",
+			"path": "esp32_bluetooth_classic"
+		},
+		{
+			"name": "esp32_BLE",
+			"path": "esp32_BLE"
+		},
+		{
+			"name": "esp32_pwm",
+			"path": "esp32_pwm"
+		},
+		{
+			"name": "code-task5",
+			"path": "code-task5"
 		}
 	],
 	"settings": {}
