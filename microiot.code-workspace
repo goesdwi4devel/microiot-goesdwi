@@ -50,6 +50,18 @@
 		{
 			"name": "code-task5",
 			"path": "code-task5"
+		},
+		{
+			"name": "esp32_wifi",
+			"path": "esp32_wifi"
+		},
+		{
+			"name": "esp32_wifi_dht11",
+			"path": "esp32_wifi_dht11"
+		},
+		{
+			"name": "code-task6",
+			"path": "code-task6"
 		}
 	],
 	"settings": {}
