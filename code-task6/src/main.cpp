@@ -153,8 +153,7 @@ void loop()
     Serial.println(sentence);
     connectToNetwork();
   }
-
-  if (SerialBT.available())
+  else
   {
     char receivedChar = SerialBT.read();
     receivedString += receivedChar;
@@ -243,10 +242,10 @@ void loop()
 
   if (buttonPress)
   {
-    buttonPress = !buttonPress;
+
     for (int i = 0; i < EEPROMSIZE_WF; i++)
     {
-      receiveData[i]  = 0;
+      receiveData[i] = 0;
     }
 
     Serial.println("Clearing SSID and Password");
