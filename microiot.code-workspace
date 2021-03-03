@@ -62,6 +62,22 @@
 		{
 			"name": "code-task6",
 			"path": "code-task6"
+		},
+		{
+			"name": "esp32_json",
+			"path": "esp32_json"
+		},
+		{
+			"name": "esp32_telegram_http_client",
+			"path": "esp32_telegram_http_client"
+		},
+		{
+			"name": "esp32_mqtt_publish",
+			"path": "..\\Belajar_IoT\\esp32_mqtt_publish"
+		},
+		{
+			"name": "code-task7",
+			"path": "code-task7"
 		}
 	],
 	"settings": {}
